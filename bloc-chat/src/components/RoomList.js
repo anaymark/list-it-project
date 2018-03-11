@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Row, Col } from 'react-grid-system';
+import '.././styles/roomlist.css';
 
 class RoomList extends Component {
 
@@ -24,13 +26,18 @@ class RoomList extends Component {
 render() {
 
 	return(
-    <div>
+	<Row className = "chat-rooms">	
+    <Col md={4} className = "room-holder">
+    <section className = "room-numbers">
+    <h1 className = "hero-name">Bloc Chat</h1>
     {this.state.rooms.map((room, key) =>
     	<div key={room.key}>
-    	<span>{room.name}</span>
+    	<span className = "rooms-avail">{room.name}</span>
     	</div>
     	)}
-    </div>
+    </section>
+    </Col>
+    </Row>
 
    );
 }
