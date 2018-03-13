@@ -10,7 +10,7 @@ class RoomList extends Component {
 		this.state = {
 			rooms: []
 		};
-	    this.roomsRef = this.props.firebase.database().ref('rooms');
+	        this.roomsRef = this.props.firebase.database().ref('rooms');
 	}
 
 	componentDidMount() {
@@ -26,18 +26,18 @@ class RoomList extends Component {
 render() {
 
 	return(
-	<Row className = "chat-rooms">	
-    <Col md={4} className = "room-holder">
-    <section className = "room-numbers">
-    <h1 className = "hero-name">Bloc Chat</h1>
-    {this.state.rooms.map((room, key) =>
-    	<div key={room.key}>
-    	<span className = "rooms-avail">{room.name}</span>
-    	</div>
-    	)}
-    </section>
-    </Col>
-    </Row>
+	  <Row className = "chat-rooms">	
+            <Col md={4} className = "room-holder">
+            <section className = "room-numbers">
+            <h1 className = "hero-name">Bloc Chat</h1>
+            {this.state.rooms.map((room, key) =>
+    	    <div key={room.key}>
+    	    <span className = "rooms-avail">{room.name}</span>
+    	    </div>
+    	    )}
+            </section>
+            </Col>
+         </Row>
 
    );
 }
