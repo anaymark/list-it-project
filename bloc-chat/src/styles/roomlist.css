@@ -3,13 +3,56 @@
 	margin-left: 6rem;
 }
 
+.modal-button {
+	margin-top: 20px;
+	margin-left: 20px;
+	background-color: #B71C1C;
+    border: none;
+    color: white;
+    padding: 10px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    
+}
+
+.close-modal{
+	margin-top: 20px;
+	margin-left: 20px;
+	background-color: #757575;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 50%;
+}
+
+.submit-bttn{
+    margin-top: 20px;
+	margin-left: 20px;
+	background-color: #B71C1C;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 50%;
+}
+
+
 .room-holder{
-	background-color: grey;
+	background-color: #BDBDBD;
 	height: calc(100vh - 15px);
 }
 
 .rooms-avail{
-	 line-height: 2.0;
+	line-height: 2.0;
 }
 
 html, body, #root, .chat-rooms, .room-holder {
