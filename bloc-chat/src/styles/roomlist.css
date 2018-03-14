@@ -3,6 +3,15 @@
 	margin-left: 6rem;
 }
 
+.room-holder{
+	background-color: grey;
+	height: calc(100vh - 15px);
+}
+
 .rooms-avail{
 	 line-height: 2.0;
+}
+
+html, body, #root, .chat-rooms, .room-holder {
+    height: 100%;
 }
