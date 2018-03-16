@@ -15,7 +15,7 @@ const customStyles = {
   }
 };
 
-Modal.setAppElement(document.getElementById('App'));
+Modal.setAppElement(document.getElementById('root'));
 
 class RoomList extends Component {
 
@@ -28,22 +28,18 @@ class RoomList extends Component {
 			modalIsOpen: false
 
 		};
-	    this.roomsRef = this.props.firebase.database().ref('rooms');
-	    this.openModal = this.openModal.bind(this);
-        this.afterOpenModal = this.afterOpenModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
+	  this.roomsRef = this.props.db.database().ref('rooms');
+	  this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
 	}
 
 	openModal() {
-        this.setState({modalIsOpen: true});
+    this.setState({modalIsOpen: true});
     }
 
-    afterOpenModal() {
-        
-    }
 
-    closeModal() {
-    	this.setState({modalIsOpen: false});
+  closeModal() {
+    this.setState({modalIsOpen: false});
     }
 
 	handleChange(e) {
@@ -56,8 +52,13 @@ class RoomList extends Component {
 		this.roomsRef.on('child_added', snapshot => {
 			const room = snapshot.val();
 			room.key = snapshot.key;
-			this.setState({rooms: this.state.rooms.concat(room) });
+	  this.setState({rooms: this.state.rooms.concat(room) });
 		});
+
+    this.roomsRef.on('child_removed', snapshot =>
+    {
+    this.setState({rooms: this.state.rooms.filter( room => room.key !== snapshot.key)})
+    });
 	}
 
 
@@ -66,48 +67,51 @@ class RoomList extends Component {
 			name: newRoomName
 		});
 		this.setState({newRoomName:''});
+    this.closeModal();
 	}
+
+
+  removeRoom(room) {
+    this.roomsRef.child(room.key).remove();
+  }
 	
 
 
 render() {
 
 	return(
-	<Row className = "chat-rooms">	
-      <Col md={4} className = "room-holder">
-        <section className = "room-numbers">
-    <Row>
+	
+    <section className = "room-numbers">
+      <Row>
         <h1 className = "hero-name">Bloc Chat</h1>
         <button className = "modal-button" onClick={this.openModal}>New Room</button>
-    </Row>
+      </Row>
         <Modal
-    	  isOpen={this.state.modalIsOpen}
-    	  onAfterOpen={this.afterOpenModal}
-    	  onRequestClose={this.closeModal}
-    	  style={customStyles}
-    	  contentLabel="Modal"
+    	    isOpen={this.state.modalIsOpen}
+    	    onRequestClose={this.closeModal}
+    	    style={customStyles}
+    	    contentLabel="Modal"
         >
-        
-        <form className = "modal-form" onSubmit={ (e) => { e.preventDefault(); this.createRoom(this.state.newRoomName) }}>
-          <Row><h3>New Room Name: </h3></Row>
-          
-          <Row>
-          <input type="text" name="newRoomName"  value = {this.state.newRoomName} onChange = {this.handleChange.bind(this)}/>
-          <input className = "submit-bttn" type="submit" value="+" />
-          </Row>
-          <Row>
-          <button className = "close-modal" onClick={this.closeModal}>close</button>
-          </Row>
+        <form className = "modal-form" onSubmit={ (e) => { e.preventDefault(); this.createRoom(this.state.newRoomName);}}>
+      <Row>
+        <h3>New Room Name: </h3>
+      </Row>  
+      <Row>
+        <input type="text" name="newRoomName"  value = {this.state.newRoomName} onChange = {this.handleChange.bind(this)}/>
+        <input className = "submit-bttn" type="submit" value="+"/>
+      </Row>
+      <Row>
+        <button className = "close-modal" onClick={this.closeModal}>close</button>
+      </Row>
         </form>
         </Modal>
-          {this.state.rooms.map((room, key) =>
-    	  <div key={room.key}>
-    	  <span className = "rooms-avail">{room.name}</span>
+          {this.state.rooms.map((room) =>
+    	  <div key={room.key} className = {this.props.activeRoom && this.props.activeRoom.key === room.key ? 'active' : '' }>
+        <button onClick={ () => this.props.setRoom(room) } >{ room.name }</button>
+         <button onClick={ () => this.removeRoom(room) } className="remove remove-room-button"> - </button>
     	  </div>
     	  )}
-        </section>
-      </Col>
-    </Row>
+    </section>
    );
 }
 }
