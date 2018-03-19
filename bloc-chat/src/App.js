@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import * as firebase from 'firebase';
-import RoomList from './components/RoomList'
-import MessageList from './components/MessageList'
-
+import RoomList from './components/RoomList';
+import MessageList from './components/MessageList';
+import User from './components/User';
 
 // Initialize Firebase
   var config = {
@@ -22,8 +22,8 @@ class App extends Component {
     super(props);
     this.state = {
       activeRoom: null,
-      user: null,
-      currentRoom: ''
+      user: [],
+      currentRoom: '',
     };
   }
 
@@ -42,10 +42,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+      
         <RoomList db={firebase} activeRoom={this.state.activeRoom} setRoom={this.setRoom.bind(this)}>
         </RoomList>
+        <User firebase = {firebase} setUser = {this.setUser.bind(this)} user={this.state.user}>
+        </User>
         <MessageList db={firebase} activeRoom={this.state.activeRoom}>
-          </MessageList>
+        </MessageList>
       
       </div>
     );
