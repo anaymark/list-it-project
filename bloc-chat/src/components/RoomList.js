@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
-import { Row, Col } from 'react-grid-system';
+import { Row} from 'react-grid-system';
 import '.././styles/roomlist.css';
 
 
@@ -33,6 +33,8 @@ class RoomList extends Component {
     this.closeModal = this.closeModal.bind(this);
 	}
 
+
+
 	openModal() {
     this.setState({modalIsOpen: true});
     }
@@ -54,13 +56,13 @@ class RoomList extends Component {
 			room.key = snapshot.key;
 	  this.setState({rooms: this.state.rooms.concat(room) });
 		});
-
+    
     this.roomsRef.on('child_removed', snapshot =>
     {
     this.setState({rooms: this.state.rooms.filter( room => room.key !== snapshot.key)})
     });
-	}
-
+  }
+	
 
 	createRoom(newRoomName) {
 		this.roomsRef.push({
@@ -70,11 +72,9 @@ class RoomList extends Component {
     this.closeModal();
 	}
 
-
   removeRoom(room) {
     this.roomsRef.child(room.key).remove();
   }
-	
 
 
 render() {
@@ -86,31 +86,35 @@ render() {
         <h1 className = "hero-name">Bloc Chat</h1>
         <button className = "modal-button" onClick={this.openModal}>New Room</button>
       </Row>
-        <Modal
+      <Modal
     	    isOpen={this.state.modalIsOpen}
     	    onRequestClose={this.closeModal}
     	    style={customStyles}
     	    contentLabel="Modal"
         >
         <form className = "modal-form" onSubmit={ (e) => { e.preventDefault(); this.createRoom(this.state.newRoomName);}}>
-      <Row>
-        <h3>New Room Name: </h3>
-      </Row>  
-      <Row>
-        <input type="text" name="newRoomName"  value = {this.state.newRoomName} onChange = {this.handleChange.bind(this)}/>
-        <input className = "submit-bttn" type="submit" value="+"/>
-      </Row>
-      <Row>
-        <button className = "close-modal" onClick={this.closeModal}>close</button>
-      </Row>
+          <Row>
+            <h3>New Room Name: </h3>
+          </Row>  
+          <Row>
+            <input type="text" name="newRoomName"  value = {this.state.newRoomName} onChange = {this.handleChange.bind(this)}/>
+            <input className = "submit-bttn" type="submit" value="+"/>
+          </Row>
+          <Row>
+             <button className = "close-modal" onClick={this.closeModal}>close</button>
+          </Row>
         </form>
-        </Modal>
+      </Modal>
+      <section id="scroll-invalid">
+        <ul className = "overscroll">
           {this.state.rooms.map((room) =>
-    	  <div key={room.key} className = {this.props.activeRoom && this.props.activeRoom.key === room.key ? 'active' : '' }>
-        <button onClick={ () => this.props.setRoom(room) } >{ room.name }</button>
-         <button onClick={ () => this.removeRoom(room) } className="remove remove-room-button"> - </button>
-    	  </div>
-    	  )}
+    	    <li key={room.key} className={ this.props.activeRoom && this.props.activeRoom.key === room.key ? 'active' : '' }>
+            <button onClick={ () => {this.props.setRoom(room)}}>{ room.name }</button>
+            <button onClick={ () => this.removeRoom(room) } > - </button>
+    	    </li>
+    	    )}
+        </ul>
+      </section>
     </section>
    );
 }
