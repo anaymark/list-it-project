@@ -1,6 +1,8 @@
 .App {
   height: 100%;
   text-align: center;
+
+
 }
 
 .body{
@@ -8,3 +10,12 @@
 }
 
 
+html, body, #root, .chat-rooms, .room-holder {
+    height: 100%;
+    font-family: "Pacifico", cursive;
+}
+
+li {
+list-style-type:none;
+
+}
