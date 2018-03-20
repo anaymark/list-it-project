@@ -24,6 +24,7 @@ class App extends Component {
       activeRoom: null,
       user: [],
       currentRoom: '',
+      activeUser:null
     };
   }
 
@@ -39,6 +40,7 @@ class App extends Component {
     this.setState({activeRoom:room});
   }
 
+
   render() {
     return (
       <div className="App">
@@ -47,7 +49,7 @@ class App extends Component {
         </RoomList>
         <User firebase = {firebase} setUser = {this.setUser.bind(this)} user={this.state.user}>
         </User>
-        <MessageList db={firebase} activeRoom={this.state.activeRoom}>
+        <MessageList db={firebase} activeRoom={this.state.activeRoom} user={this.state.user}>
         </MessageList>
       
       </div>
