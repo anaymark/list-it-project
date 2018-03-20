@@ -1,7 +1,48 @@
 .messages{
   height: 100%;
+
 }
 
 .active-messages {
+  
   font-family:"Pacifico";
+  display: flex;
+	margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+
+.submit-button {
+	display: flex;
+	width: 20%;
+	margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    background-color: #B71C1C;
+    border: 2px;
+    border-radius: 50%;
+    height: 3rem;
+    margin-top: 2rem;
+    color:white;
+    font-size: 1.5rem;
+
+}
+
+
+
+.remove{
+	display: flex;
+	justify-content: right;
+}
+
+
+
+.room-name{
+	display: flex;
+	margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
 }

@@ -109,8 +109,8 @@ render() {
         <ul className = "overscroll">
           {this.state.rooms.map((room) =>
     	    <li key={room.key} className={ this.props.activeRoom && this.props.activeRoom.key === room.key ? 'active' : '' }>
-            <button onClick={ () => {this.props.setRoom(room)}}>{ room.name }</button>
-            <button onClick={ () => this.removeRoom(room) } > - </button>
+            <button className = "add-room" onClick={ () => {this.props.setRoom(room)}}>{ room.name }</button>
+            <button className = "remove-room" onClick={ () => this.removeRoom(room) } > x </button>
     	    </li>
     	    )}
         </ul>
