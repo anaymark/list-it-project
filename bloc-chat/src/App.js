@@ -5,6 +5,7 @@ import RoomList from './components/RoomList';
 import MessageList from './components/MessageList';
 import User from './components/User';
 
+
 // Initialize Firebase
   var config = {
     apiKey: "AIzaSyCy8xYxSUwi8Q-ZbwjRG2uusduFGFfbymA",
@@ -44,14 +45,18 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      
-        <RoomList db={firebase} activeRoom={this.state.activeRoom} setRoom={this.setRoom.bind(this)}>
+        <section id = "pannel">
+        <RoomList id = "room-list" db={firebase} activeRoom={this.state.activeRoom} setRoom={this.setRoom.bind(this)}>
         </RoomList>
-        <User firebase = {firebase} setUser = {this.setUser.bind(this)} user={this.state.user}>
+        <section id = "user-pannel">
+        <User  firebase = {firebase} setUser = {this.setUser.bind(this)} user={this.state.user}>
         </User>
+        </section>
+        </section>
+        <section id = "message-container">
         <MessageList db={firebase} activeRoom={this.state.activeRoom} user={this.state.user}>
         </MessageList>
-      
+        </section>
       </div>
     );
   }

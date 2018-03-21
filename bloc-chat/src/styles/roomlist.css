@@ -1,103 +1,54 @@
-.room-numbers{
-    display: flex;
-    justify-content: flex-start;
-    justify-content: space-around;
-    background-color:  #757575;
-    
-    }
+#hero-name{
+	font-size: 2em;
+	margin-left: 10px;
+	margin-right: 10px;
+	border:solid 2px white;
+	border-radius: 50%;
+	text-align: center;
+}
 
-.modal-button {
+#all-rooms{
 	margin-top: 20px;
-	margin-left: 20px;
-	background-color: #B71C1C;
-    border: 2px;
-    border-radius: 50%;
-    color: white;
-    padding: 10px 22px;
-    text-align: center;
-    text-decoration: none;
-    display: flex;
-    font-size: 16px;
-    width: auto;
-    height: 3rem;
-    
-}
-
-.close-modal{
-	margin-top: 20px;
-	margin-left: 20px;
-	background-color: #757575;
-    border: none;
-    color: white;
-    padding: 5px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 50%;
-}
-
-.submit-bttn{
-    margin-top: 20px;
-	margin-left: 20px;
-	background-color: #B71C1C;
-    border: none;
-    color: white;
-    padding: 5px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 50%;
-}
-
-
-.rooms-avail{
-	line-height: 2.0;
+	margin-left: 10px;
+	color:white;
 }
 
 .overscroll{
-     min-height:101%;
-
-}
-
-#scroll-invalid{
+	display: flex;
+	flex-direction: column;
+    overflow-x: scroll;
     overflow-y: scroll;
-    overflow-x:scroll;
-    height: 100px;
-    width:30%;
+	height: 100px;
+	font-size: 1.25em;
 }
 
-.add-room{
-    background-color: #B71C1C;
-    border: 2px;
-    border-radius: 50%;
-    color: white;
-    padding: 1rem 1.25rem;
-    margin-right: .5rem;
-    margin-top: 1rem;
-    text-align: center;
-    text-decoration: none;
-    display: inline-flex;
-    font-size: 1rem;
-    width: auto;
-    height: 3rem; 
+.room-numbers{
+	min-width: 200px;
 }
 
-.remove-room{
-   background-color: #B71C1C;
-    border: 2px;
-    border-radius: 50%;
-    color: white;
-    padding: 1rem 1.25rem;
-    margin-right: .5rem;
-    margin-top: 1rem;
-    text-align: center;
-    text-decoration: none;
-    display: inline-flex;
-    font-size: 1rem;
-    width: auto;
-    height: 3rem; 
 
+.add-room {
+	cursor: pointer;
+}
+
+.remover-room{
+	cursor: pointer;
+}
+
+#modal-bttn{
+	display: flex;
+	flex-direction: column;
+}
+
+.nodal-name{
+	font-size: 1.15em;
+	margin-right: 1em;
+	margin-left: 1em;
+}
+
+.new-room-form{
+	margin-left: 25px;
+    border: 1px solid;
 
 }
+
