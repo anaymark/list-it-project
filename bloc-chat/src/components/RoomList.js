@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
-import { Row} from 'react-grid-system';
 import '.././styles/roomlist.css';
+import FatTrashO from 'react-icons/lib/fa/trash-o';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import MdAdd from 'react-icons/lib/md/add';
+import FlatButton from 'material-ui/FlatButton';
 
 
 const customStyles = {
@@ -11,8 +15,20 @@ const customStyles = {
     right                 : 'auto',
     bottom                : 'auto',
     marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
+    transform             : 'translate(-50%, -50%)',
+    padding               : '0',
   }
+};
+
+const style = {
+  marginLeft: 10,
+};
+
+const styled = {
+  marginTop:4,
+  marginBottom:4,
+  fontSize:1.5
+
 };
 
 Modal.setAppElement(document.getElementById('root'));
@@ -80,12 +96,12 @@ class RoomList extends Component {
 render() {
 
 	return(
-	
+	  <MuiThemeProvider>
     <section className = "room-numbers">
-      <Row>
-        <h1 className = "hero-name">Bloc Chat</h1>
-        <button className = "modal-button" onClick={this.openModal}>New Room</button>
-      </Row>
+      <section>
+        <h1 id = "hero-name">Bloc Chat</h1>
+         <FloatingActionButton onClick={this.openModal} style={style}> <MdAdd/></FloatingActionButton>
+        
       <Modal
     	    isOpen={this.state.modalIsOpen}
     	    onRequestClose={this.closeModal}
@@ -93,29 +109,29 @@ render() {
     	    contentLabel="Modal"
         >
         <form className = "modal-form" onSubmit={ (e) => { e.preventDefault(); this.createRoom(this.state.newRoomName);}}>
-          <Row>
-            <h3>New Room Name: </h3>
-          </Row>  
-          <Row>
-            <input type="text" name="newRoomName"  value = {this.state.newRoomName} onChange = {this.handleChange.bind(this)}/>
-            <input className = "submit-bttn" type="submit" value="+"/>
-          </Row>
-          <Row>
-             <button className = "close-modal" onClick={this.closeModal}>close</button>
-          </Row>
+            <h3 className = "nodal-name">New Room Name: </h3>
+            <div id = 'room-form'>
+            <input type="text" className="new-room-form" name="newRoomName"  maxlength="20" value = {this.state.newRoomName} onChange = {this.handleChange.bind(this)}/>
+            </div>
+            <span id = "modal-bttn">
+            <FlatButton type="submit" style={styled} label="+" />
+            <FlatButton label="Close" secondary={true} onClick={this.closeModal} />
+            </span>
         </form>
       </Modal>
-      <section id="scroll-invalid">
-        <ul className = "overscroll">
+      </section>
+      <section id = "all-rooms">
+        <div className = "overscroll">
           {this.state.rooms.map((room) =>
-    	    <li key={room.key} className={ this.props.activeRoom && this.props.activeRoom.key === room.key ? 'active' : '' }>
-            <button className = "add-room" onClick={ () => {this.props.setRoom(room)}}>{ room.name }</button>
-            <button className = "remove-room" onClick={ () => this.removeRoom(room) } > x </button>
-    	    </li>
+    	    <span key={room.key} className={ this.props.activeRoom && this.props.activeRoom.key === room.key ? 'active' : '' }>
+            <span className = "add-room" onClick={ () => {this.props.setRoom(room)}}>{ room.name }</span>
+            <span className = "remove-room" onClick={ () => this.removeRoom(room) } > <FatTrashO/> </span>
+    	    </span>
     	    )}
-        </ul>
+        </div>
       </section>
     </section>
+    </MuiThemeProvider>
    );
 }
 }

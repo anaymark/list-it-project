@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import '.././styles/messagelist.css';
-import Moment from 'react-moment';
+import FatTrashO from 'react-icons/lib/fa/trash-o';
+import FlatButton from 'material-ui/FlatButton';
+import MdSend from 'react-icons/lib/md/send';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-
+const style = {
+	marginLeft: 1.125,
+}
 
 
 class MessageList extends Component {
@@ -47,7 +52,7 @@ class MessageList extends Component {
        this.messagesRef.on('child_added', snapshot  => {
        let message = Object.assign(snapshot.val(), {key: snapshot.key})
        this.setState({ allMessages: this.state.allMessages.concat( message ) }, () => {
-       this.displayMessage( this.props.activeRoom ),   this.scrollToBottom();
+       this.displayMessage( this.props.activeRoom );   this.scrollToBottom();
       });
      });
        this.messagesRef.on('child_removed', snapshot => {
@@ -56,7 +61,7 @@ class MessageList extends Component {
 
          });
        }); 
-       () => this.scrollToBottom() 
+       this.scrollToBottom() 
     }
 
 	newMessage(message) {
@@ -74,17 +79,19 @@ class MessageList extends Component {
 
 	render(){
 		return(
-			
-			<section>
-			<div className = 'messages'>
+			<MuiThemeProvider>
+			<section id="all-messages">
+			<div id = "messages">
 			  <h2 className="room-name">{ this.props.activeRoom ? this.props.activeRoom.name : '' }</h2>
 			  {this.props.activeRoom  ? (
 			  <ul className="active-messages">
 			    {this.state.messages.map(message =>
 				<li className ="full-message" key={message.key} > 
-				  <div className = "message-content-1"> Message: {message.content} </div> <button onClick={ () => this.deleteMessage(message) } className="remove">x</button>
+				  <div className = "message-content-1"> Message: {message.content} <span onClick={ () => this.deleteMessage(message) } className="remove"><FatTrashO className = "trash"/></span></div> 
+				  <div className = "meta-message">
 				  <div className = "message-content-2"> User: {message.userName}</div>
-				  <div> AT:{message.timeStamp} </div>
+				  <div className = "message-content-3"> {message.timeStamp} </div>
+				  </div>
 				</li>
                 )}
               </ul>
@@ -92,16 +99,19 @@ class MessageList extends Component {
 			  {this.props.activeRoom ? (
 			  <section className="submit-form">
 		        <form onSubmit = { (e) => {e.preventDefault(); this.newMessage(this.state.message) } }>
-		    	  <input className = "submit-form" type = "text" value = {this.state.message} onChange = {this.handleChange.bind(this)}/>
-		    	  <input className = "submit-button" type = "submit" />
+		    	  <input className = "submit-form" maxlength="120" type = "text" value = {this.state.message} onChange = {this.handleChange.bind(this)}/>
+		    	  <FlatButton type = "submit" style={style}>
+		    	  <MdSend className = "white-button"/>
+		    	  </FlatButton>
 		        </form>
               </section>
               ) : ""}
              <div style={{ float:"left", clear: "both" }}
              ref={(el) => { this.messagesEnd = el; }}>
              </div>
-            </div>
+            </div >
             </section>
+            </MuiThemeProvider>
 		    )
 	}
 }

@@ -1,21 +1,40 @@
-.App {
-  height: 100%;
-  text-align: center;
-
-
-}
-
 .body{
   height: 100%;
 }
 
 
-html, body, #root, .chat-rooms, .room-holder {
-    height: 100%;
-    font-family: "Pacifico", cursive;
+html, body, #root, #message-container, #pannel,#user-pannel {
+  font-family: "Pacifico", cursive;
+   height: calc(100vh);
 }
 
 li {
-list-style-type:none;
+  list-style-type:none;
+}
 
+#user-pannel{
+	background-color: #9E9E9E;
+}
+
+.room-numbers{
+	background-color: #9E9E9E;
+}
+
+#message-container{
+	background-color: #EEEEEE;
+	width: 85%;
+}
+
+#pannel{
+  display: flex;
+  flex-direction: column;
+}
+
+.App{
+  display: flex;
+  flex-direction: row;
+}
+
+#message-container{
+  display: flex;
 }

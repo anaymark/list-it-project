@@ -1,48 +1,51 @@
-.messages{
+#messages{	
+  margin-top: 60px;
+  margin-left: 100px;
+}
+
+#all-messages{
+  margin-left: 40px;
+  width: 750px;
+  padding-right: 20px;
+  position: relative;
+  margin:0 auto;
+  line-height: 1.4em;
   height: 100%;
-
+  overflow-y:scroll;
 }
 
-.active-messages {
-  
-  font-family:"Pacifico";
+.active-messages{
+  margin-left: -2.5em;
+}
+
+.full-message{
+  margin-top: 20px;
+  font-family: Pacifico;
+}
+
+.message-content-1{
+  width: auto;
+  word-wrap: break-word;
+}
+
+.meta-message{
+  margin-top: 5px;
   display: flex;
-	margin-left: auto;
-    margin-right: auto;
-    justify-content: center;
-    flex-direction: column;
-
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-
-.submit-button {
-	display: flex;
-	width: 20%;
-	margin-left: auto;
-    margin-right: auto;
-    justify-content: center;
-    background-color: #B71C1C;
-    border: 2px;
-    border-radius: 50%;
-    height: 3rem;
-    margin-top: 2rem;
-    color:white;
-    font-size: 1.5rem;
-
+.submit-form{	
+  min-width:50%;
+  height:50px;
 }
 
-
-
-.remove{
-	display: flex;
-	justify-content: right;
+.trash{
+  cursor: pointer;
 }
 
-
-
-.room-name{
-	display: flex;
-	margin-left: auto;
-    margin-right: auto;
-    justify-content: center;
+.white-button{
+  color: #9E9E9E;
+  font-size: 2em;
 }
+
