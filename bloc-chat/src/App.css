@@ -22,12 +22,13 @@ li {
 
 #message-container{
 	background-color: #EEEEEE;
-	width: 85%;
+	width: 50%;
 }
 
 #pannel{
   display: flex;
   flex-direction: column;
+  width: 50%;
 }
 
 .App{
