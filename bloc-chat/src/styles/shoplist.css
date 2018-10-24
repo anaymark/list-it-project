@@ -7,7 +7,7 @@
 	text-align: center;
 }
 
-#all-rooms{
+#all-lists{
 	margin-top: 20px;
 	margin-left: 10px;
 	color:white;
@@ -22,16 +22,16 @@
 	font-size: 1.25em;
 }
 
-.room-numbers{
+.list-numbers{
 	min-width: 200px;
 }
 
 
-.add-room {
+.add-list {
 	cursor: pointer;
 }
 
-.remover-room{
+.remover-list{
 	cursor: pointer;
 }
 
@@ -46,7 +46,7 @@
 	margin-left: 1em;
 }
 
-.new-room-form{
+.new-list-form{
 	margin-left: 25px;
     border: 1px solid;
 

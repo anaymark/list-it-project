@@ -16,11 +16,11 @@ li {
 	background-color: #9E9E9E;
 }
 
-.room-numbers{
+.list-numbers{
 	background-color: #9E9E9E;
 }
 
-#message-container{
+#item-container{
 	background-color: #EEEEEE;
 	width: 50%;
 }
@@ -36,6 +36,6 @@ li {
   flex-direction: row;
 }
 
-#message-container{
+#item-container{
   display: flex;
 }

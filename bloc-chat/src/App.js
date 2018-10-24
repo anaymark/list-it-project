@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import * as firebase from 'firebase';
-import RoomList from './components/RoomList';
-import MessageList from './components/MessageList';
+import ShopList from './components/ShopList';
+import ItemList from './components/ItemList';
 import User from './components/User';
 
 
@@ -22,23 +22,23 @@ class App extends Component {
    constructor(props) {
     super(props);
     this.state = {
-      activeRoom: null,
+      activeList: null,
       user: [],
-      currentRoom: '',
+      currentList: '',
       activeUser:null
     };
   }
 
-  roomChange(activeRoom) {
-    this.setState({currentRoom: activeRoom.name});
+  listChange(activeList) {
+    this.setState({currentList: activeList.name});
   }
 
   setUser(user) {
     this.setState({user: user});
   }
 
-  setRoom(room) {
-    this.setState({activeRoom:room});
+  setList(list) {
+    this.setState({activeList:list});
   }
 
 
@@ -46,16 +46,16 @@ class App extends Component {
     return (
       <div className="App">
         <section id = "pannel">
-        <RoomList id = "room-list" db={firebase} activeRoom={this.state.activeRoom} setRoom={this.setRoom.bind(this)}>
-        </RoomList>
+        <ShopList id = "list-list" db={firebase} activeList={this.state.activeList} setList={this.setList.bind(this)}>
+        </ShopList>
         <section id = "user-pannel">
         <User  firebase = {firebase} setUser = {this.setUser.bind(this)} user={this.state.user}>
         </User>
         </section>
         </section>
-        <section id = "message-container">
-        <MessageList db={firebase} activeRoom={this.state.activeRoom} user={this.state.user}>
-        </MessageList>
+        <section id = "item-container">
+        <ItemList db={firebase} activeList={this.state.activeList} user={this.state.user}>
+        </ItemList>
         </section>
       </div>
     );

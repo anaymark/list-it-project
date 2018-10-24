@@ -1,9 +1,9 @@
-#messages{	
+#items{	
   margin-top: 60px;
   margin-left: 100px;
 }
 
-#all-messages{
+#all-items{
   margin-left: 40px;
   width: 750px;
   padding-right: 20px;
@@ -14,21 +14,21 @@
   overflow-y:scroll;
 }
 
-.active-messages{
+.active-items{
   margin-left: -2.5em;
 }
 
-.full-message{
+.full-item{
   margin-top: 20px;
   font-family: Pacifico;
 }
 
-.message-content-1{
+.item-content-1{
   width: auto;
   word-wrap: break-word;
 }
 
-.meta-message{
+.meta-item{
   margin-top: 5px;
   display: flex;
   flex-direction: row;
