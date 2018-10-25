@@ -5,7 +5,6 @@ import ShopList from './components/ShopList';
 import ItemList from './components/ItemList';
 import User from './components/User';
 
-
 // Initialize Firebase
   var config = {
     apiKey: "AIzaSyCy8xYxSUwi8Q-ZbwjRG2uusduFGFfbymA",
@@ -40,7 +39,7 @@ class App extends Component {
   setList(list) {
     this.setState({activeList:list});
   }
-
+ 
 
   render() {
     return (

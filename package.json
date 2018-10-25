@@ -5,7 +5,7 @@
   "dependencies": {
     "ajv": "^6.2.1",
     "firebase": "^4.10.1",
-    "material-icons-react": "^1.0.0",
+    "material-icons-react": "^1.0.4",
     "material-ui": "^0.20.0",
     "material-ui-icons": "^1.0.0-beta.36",
     "moment": "^2.21.0",
@@ -23,5 +23,14 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "babel-preset-react-app": "^5.0.4",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0",
+    "ignore-styles": "^5.0.1",
+    "jasmine": "^3.2.0",
+    "jasmine-enzyme": "^7.0.0",
+    "jsdom": "^12.2.0"
   }
 }

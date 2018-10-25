@@ -36,7 +36,7 @@ class ItemList extends Component {
     displayItem(activeList) {
        
 	   if(!activeList) { return }
-	   this.setState({ items: this.state.allItems.filter( item => item.listId === activeList.key )}, () => this.scrollToBottom()  );
+	   this.setState({ items: this.state.allItems.filter( item => item.listId === activeList.key )} );
 	 }
      
 
@@ -44,15 +44,12 @@ class ItemList extends Component {
 	   this.itemsRef.child(list.key).remove();
 	}
 
-	scrollToBottom = () => {
-     this.itemsEnd.scrollIntoView({ behavior: "smooth" });
-    }
 
 	componentDidMount () {
        this.itemsRef.on('child_added', snapshot  => {
        let item = Object.assign(snapshot.val(), {key: snapshot.key})
        this.setState({ allItems: this.state.allItems.concat( item ) }, () => {
-       this.displayItem( this.props.activeList );   this.scrollToBottom();
+       this.displayItem( this.props.activeList );   
       });
      });
        this.itemsRef.on('child_removed', snapshot => {
@@ -61,7 +58,6 @@ class ItemList extends Component {
 
          });
        }); 
-       this.scrollToBottom() 
     }
 
 	newItem(item) {
@@ -84,6 +80,7 @@ class ItemList extends Component {
 			<div id = "items">
 			  <h2 className="list-name">{ this.props.activeList ? this.props.activeList.name : '' }</h2>
 			  {this.props.activeList  ? (
+			 
 			  <ul className="active-items">
 			    {this.state.items.map(item =>
 				<li className ="full-item" key={item.key} > 
@@ -95,6 +92,7 @@ class ItemList extends Component {
 				</li>
                 )}
               </ul>
+			  
 			  ) : ""}
 			  {this.props.activeList ? (
 			  <section className="submit-form">
@@ -106,10 +104,7 @@ class ItemList extends Component {
 		        </form>
               </section>
               ) : ""}
-             <div style={{ float:"left", clear: "both" }}
-             ref={(el) => { this.itemsEnd = el; }}>
              </div>
-            </div >
             </section>
             </MuiThemeProvider>
 		    )

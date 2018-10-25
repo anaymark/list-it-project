@@ -6,4 +6,6 @@
 
 * Deployed to Firebase
 
-* Tested with React Enzyme
+* Currently working on a test suite with Enzyme/Jasmine
+
+* Features that are in the backlog include: editing shopping items, adding users to groups, private shopping lists, and marking/unmarking of purchased items. 
