@@ -3,7 +3,7 @@
 }
 
 
-html, body, #root, #message-container, #pannel,#user-pannel {
+html, body, #root, #message-container, #pannel,#user-pannel, #all-items {
   font-family: "Pacifico", cursive;
    height: calc(100vh);
 }
@@ -22,7 +22,8 @@ li {
 
 #item-container{
 	background-color: #EEEEEE;
-	width: 50%;
+  width: 50%;
+  
 }
 
 #pannel{

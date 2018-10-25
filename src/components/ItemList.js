@@ -70,13 +70,13 @@ class ItemList extends Component {
        userName: !this.props.user ? 'Guest' : this.props.user.displayName
        });
        this.setState({item: ''});
-}
+	}
 
 
 	render(){
 		return(
 			<MuiThemeProvider>
-			<section id="all-items">
+			<div id="all-items">
 			<div id = "items">
 			  <h2 className="list-name">{ this.props.activeList ? this.props.activeList.name : '' }</h2>
 			  {this.props.activeList  ? (
@@ -84,10 +84,10 @@ class ItemList extends Component {
 			  <ul className="active-items">
 			    {this.state.items.map(item =>
 				<li className ="full-item" key={item.key} > 
-				  <div className = "item-content-1"> Item: {item.content} <span onClick={ () => this.deleteItem(item) } className="remove"><FatTrashO className = "trash"/></span></div> 
+				  <div className = "item-content-1">  <input type ="checkbox"  value="check1" checked={this.props.isCompleted} 
+       				onChange = {this.props.toggleComplete} /> Item: {item.content} <span onClick={ () => this.deleteItem(item) } className="remove"><FatTrashO className = "trash"/></span></div> 
 				  <div className = "meta-item">
 				  <div className = "item-content-2"> User: {item.userName}</div>
-				  <div className = "item-content-3"> {item.timeStamp} </div>
 				  </div>
 				</li>
                 )}
@@ -95,17 +95,17 @@ class ItemList extends Component {
 			  
 			  ) : ""}
 			  {this.props.activeList ? (
-			  <section className="submit-form">
+			  <div className="submit-form">
 		        <form onSubmit = { (e) => {e.preventDefault(); this.newItem(this.state.item) } }>
 		    	  <input className = "submit-form" maxlength="120" type = "text" value = {this.state.item} onChange = {this.handleChange.bind(this)}/>
-		    	  <FlatButton type = "submit" style={style}>
+				  <FlatButton type = "submit" style={style}>
 		    	  <MdSend className = "white-button"/>
 		    	  </FlatButton>
 		        </form>
-              </section>
+              </div>
               ) : ""}
              </div>
-            </section>
+            </div>
             </MuiThemeProvider>
 		    )
 	}
