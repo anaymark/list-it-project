@@ -42,23 +42,19 @@ class ShopList extends Component {
 			lists: [],
 			newListName: '',
 			modalIsOpen: false
-
-		};
+    };
 	  this.listsRef = this.props.db.database().ref('lists');
 	  this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
 	}
 
-
-
 	openModal() {
     this.setState({modalIsOpen: true});
-    }
-
+  }
 
   closeModal() {
     this.setState({modalIsOpen: false});
-    }
+  }
 
 	handleChange(e) {
 		this.setState({
@@ -71,15 +67,13 @@ class ShopList extends Component {
 			const list = snapshot.val();
 			list.key = snapshot.key;
 	  this.setState({lists: this.state.lists.concat(list) });
-		});
+	});
     
-    this.listsRef.on('child_removed', snapshot =>
-    {
+  this.listsRef.on('child_removed', snapshot => {
     this.setState({lists: this.state.lists.filter( list => list.key !== snapshot.key)})
     });
   }
 	
-
 	createList(newListName) {
 		this.listsRef.push({
 			name: newListName
@@ -93,32 +87,31 @@ class ShopList extends Component {
   }
 
 
-render() {
+  render() {
 
 	return(
 	  <MuiThemeProvider>
     <section className = "list-numbers">
       <section>
         <h1 id = "hero-name">List It</h1>
-         <FloatingActionButton onClick={this.openModal} style={style}> <MdAdd/></FloatingActionButton>
-        
-      <Modal
+        <FloatingActionButton onClick={this.openModal} style={style}> <MdAdd/></FloatingActionButton>
+        <Modal
     	    isOpen={this.state.modalIsOpen}
     	    onRequestClose={this.closeModal}
     	    style={customStyles}
     	    contentLabel="Modal"
-        >
-        <form className = "modal-form" onSubmit={ (e) => { e.preventDefault(); this.createList(this.state.newListName);}}>
+         >
+         <form className = "modal-form" onSubmit={ (e) => { e.preventDefault(); this.createList(this.state.newListName);}}>
             <h3 className = "nodal-name">New List Name: </h3>
             <div id = 'list-form'>
-            <input type="text" className="new-list-form" name="newListName"  maxlength="20" value = {this.state.newListName} onChange = {this.handleChange.bind(this)}/>
+              <input type="text" className="new-list-form" name="newListName"  maxlength="20" value = {this.state.newListName} onChange = {this.handleChange.bind(this)}/>
             </div>
             <span id = "modal-bttn">
-            <FlatButton type="submit" style={styled} label="+" />
-            <FlatButton label="Close" secondary={true} onClick={this.closeModal} />
+              <FlatButton type="submit" style={styled} label="+" />
+              <FlatButton label="Close" secondary={true} onClick={this.closeModal} />
             </span>
-        </form>
-      </Modal>
+         </form>
+        </Modal>
       </section>
       <section id = "all-lists">
         <div className = "overscroll">
@@ -135,8 +128,6 @@ render() {
    );
 }
 }
-
-
 
 export default ShopList;
 

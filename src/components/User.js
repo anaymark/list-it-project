@@ -12,19 +12,14 @@ const style = {
   width: 40,
   height: 40,
 };
-
-
-
 class User extends Component {
 
 	constructor(props){
 		super(props);
-
-        this.signOut = this.signOut.bind(this);
+      this.signOut = this.signOut.bind(this);
 	    this.signInWithPopup = this.signInWithPopup.bind(this);
 	    this.userRef = this.props.firebase.database().ref('user');
      }
-    
     
     signInWithPopup(){
       var provider = new this.props.firebase.auth.GoogleAuthProvider();
@@ -44,7 +39,6 @@ class User extends Component {
     }
 
     signOut(){
-    
     	this.props.firebase.auth().signOut().then(()=>{
     		this.props.setUser(null);
     	});
@@ -57,29 +51,28 @@ class User extends Component {
     }
    
 
-	render() {
+	  render() {
 		
-		return(
+		 return(
       <MuiThemeProvider>
-			<section className = "user-nav">
-        <section className = "buttons">
-			  <RaisedButton onClick = {this.signInWithPopup} primary={true} style={style} >
-        <FaSignIn className = "sign-bttn"/>
-        </RaisedButton>
-        <RaisedButton onClick = {this.signOut} secondary={true} style={style} >
-        <FaSignOut className = "sign-bttn"/>
-        </RaisedButton>
-        </section>
+			  <section className = "user-nav">
+          <section className = "buttons">
+			      <RaisedButton onClick = {this.signInWithPopup} primary={true} style={style} >
+            <FaSignIn className = "sign-bttn"/>
+            </RaisedButton>
+            <RaisedButton onClick = {this.signOut} secondary={true} style={style} >
+            <FaSignOut className = "sign-bttn"/>
+            </RaisedButton>
+          </section>
 			 
-			  
 			  {this.props.user ? 
 			  (<span>
-         <span className = "user-name"> User: {this.props.user.displayName }</span>
-         <img className = "user-image" src= {this.props.user.photoURL} alt="user" /> 
+          <span className = "user-name"> User: {this.props.user.displayName }</span>
+          <img className = "user-image" src= {this.props.user.photoURL} alt="user" /> 
 			   </span>
 			  ) : 
 			  <span>
-			  User: Guest
+			    User: Guest
 			  </span> }
 			</section>		
       </MuiThemeProvider>

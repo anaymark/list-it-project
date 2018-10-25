@@ -18,7 +18,7 @@ import User from './components/User';
 
 class App extends Component {
    
-   constructor(props) {
+  constructor(props) {
     super(props);
     this.state = {
       activeList: null,
@@ -40,21 +40,20 @@ class App extends Component {
     this.setState({activeList:list});
   }
  
-
   render() {
     return (
       <div className="App">
         <section id = "pannel">
-        <ShopList id = "list-list" db={firebase} activeList={this.state.activeList} setList={this.setList.bind(this)}>
-        </ShopList>
+          <ShopList id = "list-list" db={firebase} activeList={this.state.activeList} setList={this.setList.bind(this)}>
+          </ShopList>
         <section id = "user-pannel">
-        <User  firebase = {firebase} setUser = {this.setUser.bind(this)} user={this.state.user}>
-        </User>
+          <User  firebase = {firebase} setUser = {this.setUser.bind(this)} user={this.state.user}>
+          </User>
         </section>
         </section>
         <section id = "item-container">
-        <ItemList db={firebase} activeList={this.state.activeList} user={this.state.user}>
-        </ItemList>
+          <ItemList db={firebase} activeList={this.state.activeList} user={this.state.user}>
+          </ItemList>
         </section>
       </div>
     );

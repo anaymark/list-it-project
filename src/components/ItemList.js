@@ -14,12 +14,9 @@ class ItemList extends Component {
 
 	constructor(props){
 		super(props);
-		this.state = {
-			
+		this.state = {		
             allItems: [], items: [], item: ''
-
 		}
-
 	    this.itemsRef = this.props.db.database().ref('items');
 	}
 
@@ -27,22 +24,17 @@ class ItemList extends Component {
 	   this.setState({item: e.target.value});
 	}
 	
-//compare nextProps and current props
+	//compare nextProps and current props
     componentWillReceiveProps(nextProps) {
        this.displayItem( nextProps.activeList );
     }
 
     
     displayItem(activeList) {
-       
 	   if(!activeList) { return }
 	   this.setState({ items: this.state.allItems.filter( item => item.listId === activeList.key )} );
 	 }
      
-
-	deleteItem(list) {
-	   this.itemsRef.child(list.key).remove();
-	}
 
 
 	componentDidMount () {
@@ -72,44 +64,46 @@ class ItemList extends Component {
        this.setState({item: ''});
 	}
 
+	deleteItem(list) {
+		this.itemsRef.child(list.key).remove();
+	 }
 
 	render(){
 		return(
 			<MuiThemeProvider>
 			<div id="all-items">
-			<div id = "items">
-			  <h2 className="list-name">{ this.props.activeList ? this.props.activeList.name : '' }</h2>
-			  {this.props.activeList  ? (
+			  <div id = "items">
+			    <h2 className="list-name">{ this.props.activeList ? this.props.activeList.name : '' }</h2>
+			    {this.props.activeList  ? (
 			 
-			  <ul className="active-items">
+			    <ul className="active-items">
 			    {this.state.items.map(item =>
-				<li className ="full-item" key={item.key} > 
-				  <div className = "item-content-1">  <input type ="checkbox"  value="check1" checked={this.props.isCompleted} 
+				  <li className ="full-item" key={item.key} > 
+				    <div className = "item-content-1">  <input type ="checkbox"  value="check1" checked={this.props.isCompleted} 
        				onChange = {this.props.toggleComplete} /> Item: {item.content} <span onClick={ () => this.deleteItem(item) } className="remove"><FatTrashO className = "trash"/></span></div> 
-				  <div className = "meta-item">
-				  <div className = "item-content-2"> User: {item.userName}</div>
-				  </div>
-				</li>
-                )}
-              </ul>
+				    <div className = "meta-item">
+				    <div className = "item-content-2"> User: {item.userName}</div>
+			        </div>
+				  </li>
+                  )}
+                </ul>
 			  
-			  ) : ""}
-			  {this.props.activeList ? (
-			  <div className="submit-form">
-		        <form onSubmit = { (e) => {e.preventDefault(); this.newItem(this.state.item) } }>
+			    ) : ""}
+			    {this.props.activeList ? (
+			    <div className="submit-form">
+		          <form onSubmit = { (e) => {e.preventDefault(); this.newItem(this.state.item) } }>
 		    	  <input className = "submit-form" maxlength="120" type = "text" value = {this.state.item} onChange = {this.handleChange.bind(this)}/>
-				  <FlatButton type = "submit" style={style}>
-		    	  <MdSend className = "white-button"/>
-		    	  </FlatButton>
-		        </form>
+				    <FlatButton type = "submit" style={style}>
+		    	    <MdSend className = "white-button"/>
+		    	    </FlatButton>
+		          </form>
+                </div>
+                ) : ""}
               </div>
-              ) : ""}
-             </div>
             </div>
             </MuiThemeProvider>
 		    )
 	}
 }
-
 
 export default ItemList;
